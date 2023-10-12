@@ -13,8 +13,7 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: const Text(
             'sample data',
-            style: TextStyle(
-                fontSize: 30, fontWeight: FontWeight.w700, color: Colors.white),
+            style: TextStyle(fontSize: 35, color: Colors.white),
           ),
           backgroundColor: Colors.purple.shade900,
         ),
