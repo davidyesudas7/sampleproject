@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class DataCard extends StatelessWidget {
   const DataCard({
@@ -17,13 +16,14 @@ class DataCard extends StatelessWidget {
       imageBuilder: (context, imageProvider) => Material(
         elevation: 2,
         child: Container(
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             image: DecorationImage(
               image: imageProvider,
               fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(Colors.red, BlendMode.colorBurn),
+              colorFilter:
+                  const ColorFilter.mode(Colors.red, BlendMode.colorBurn),
             ),
           ),
           child: Center(
@@ -36,8 +36,9 @@ class DataCard extends StatelessWidget {
           ),
         ),
       ),
-      placeholder: (context, url) => Center(child: CircularProgressIndicator()),
-      errorWidget: (context, url, error) => Icon(Icons.error),
+      placeholder: (context, url) =>
+          const Center(child: CircularProgressIndicator()),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
     );
   }
 }

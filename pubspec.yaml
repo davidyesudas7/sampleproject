@@ -88,10 +88,10 @@ flutter:
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
-  fonts:
-    - family: pacifico
-      fonts:
-        - asset: fonts\Pacifico-Regular.ttf
+  # fonts:
+  #   - family: pacifico
+  #     fonts:
+  #       - asset: fonts\Pacifico-Regular.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
