@@ -1,28 +1,36 @@
+import 'dart:convert';
 import 'dart:developer';
-
-import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:sample_project/core/exceptions.dart';
 import 'package:sample_project/data/homepage_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:sample_project/data/urls.dart';
 
 abstract class HomepageRemoteData {
-  Future<List<HomePageModel>> getremotedatasource();
+  Future<List<HomePagemodel>> getremotedatasource();
 }
 
+@LazySingleton(as: HomepageRemoteData)
 class HomepageRemoteDataImpl implements HomepageRemoteData {
   final http.Client client;
 
   HomepageRemoteDataImpl({required this.client});
   @override
-  Future<List<HomePageModel>> getremotedatasource() async {
+  Future<List<HomePagemodel>> getremotedatasource() async {
     final response = await client.get(Uri.parse(homepageurl));
     log(response.body);
     if (response.statusCode != 200) {
       throw ServerException();
-    } else {
-      final homePageModel = homePageModelFromJson(response.body);
-      return homePageModel;
+    }
+    // else if (response.statusCode = 200) {
+    //   throw GenralException();
+    // }
+    else {
+      final homepagemodel = (jsonDecode(response.body) as List).map((e) {
+        return HomePagemodel.fromJson(e);
+      }).toList();
+
+      return homepagemodel;
     }
   }
 }

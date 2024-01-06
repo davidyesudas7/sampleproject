@@ -1,20 +1,23 @@
-import 'package:equatable/equatable.dart';
-
-class HomePageEntity extends Equatable {
+class HomePageEntity {
   final int albumId;
   final int id;
   final String title;
   final String url;
   final String thumbnailUrl;
 
-  const HomePageEntity({
+  HomePageEntity({
     required this.albumId,
     required this.id,
     required this.title,
     required this.url,
     required this.thumbnailUrl,
   });
+}
 
-  @override
-  List<Object?> get props => [albumId, id, title, url, thumbnailUrl];
+mixin HomePageModelMixin {
+  int get albumId;
+  int get id;
+  String get title;
+  String get url;
+  String get thumbnailUrl;
 }

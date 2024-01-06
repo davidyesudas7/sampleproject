@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sample_project/core/failures.dart';
-import 'package:sample_project/domain/homepage_entity.dart';
+import 'package:sample_project/data/homepage_model.dart';
 import 'package:sample_project/domain/homepage_uscase.dart';
 
 class HomepageDtatProvider extends ChangeNotifier {
-  List<HomePageEntity> homePageEntity = [];
+  List<HomePagemodel> homePageEntity = [];
   String? errormessage;
   bool isloading = true;
   final HomepageUscase homepageUscase;
@@ -13,7 +12,7 @@ class HomepageDtatProvider extends ChangeNotifier {
   Future<void> gethomepagedata() async {
     final data = await homepageUscase.gethompagedata();
     data.fold((failure) {
-      errormessage = _maperrormessagestofailure(failure);
+      errormessage = failure.errormessage;
       isloading = false;
       notifyListeners();
     }, (homedata) {
@@ -25,16 +24,16 @@ class HomepageDtatProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  String _maperrormessagestofailure(Failure failure) {
-    switch (failure.runtimeType) {
-      case ServerFailure:
-        return kServerfailure;
+  // String _maperrormessagestofailure(Failure failure) {
+  //   switch (failure.runtimeType) {
+  //     case ServerFailure:
+  //       return kServerfailure;
 
-      case CacheFailure:
-        return kCachefailure;
+  //     case CacheFailure:
+  //       return kCachefailure;
 
-      default:
-        return kGenaralfailure;
-    }
-  }
+  //     default:
+  //       return kGenaralfailure;
+  //   }
+  // }
 }
